@@ -1,4 +1,4 @@
-package com.coolweather.android.coolweather;
+package com.coolsix.android;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.coolweather.android.coolweather", appContext.getPackageName());
+        assertEquals("com.coolsix.android", appContext.getPackageName());
     }
 }
