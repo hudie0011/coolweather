@@ -1,5 +1,6 @@
 package com.coolsix.android;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.media.Image;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.coolsix.android.gson.Forecast;
 import com.coolsix.android.gson.Weather;
+import com.coolsix.android.service.AutoUpdateService;
 import com.coolsix.android.util.HttpUtil;
 import com.coolsix.android.util.Utility;
 
@@ -168,8 +170,8 @@ private ImageView bingPicImg;
     public void requestWeather(final String weatherId) {
 
      //6 首先使用参数中传入的天气id和之前申请的APIkey拼接出一个接口地址
-       // String weatherUrl = "http://guolin.tech/api/weather?cityid=" + weatherId + "&key=bc0418b57b2d4918819d3974ac1285d9";
-          String  weatherUrl   =  "http://guolin.tech/api/weather?cityid="+weatherId+     "&key=0885425e02e54661bd27eb5c6398a25d";
+      String weatherUrl = "http://guolin.tech/api/weather?cityid=" + weatherId + "&key=bc0418b57b2d4918819d3974ac1285d9";
+         // String  weatherUrl   =  "http://guolin.tech/api/weather?cityid=weatherId&key=0885425e02e54661bd27eb5c6398a25d";
     //7接着调用HttpUtil.sendOkHttpRequest 方法向改地址发出请求
         HttpUtil.sendOkHttpRequest(weatherUrl, new Callback() {
 
@@ -249,6 +251,8 @@ private ImageView bingPicImg;
         //15 设置完了所有的数据之后,记得要将ScrollView重新变成可见.
         weatherLayout.setVisibility(View.VISIBLE);
 
+        Intent intent = new Intent(this, AutoUpdateService.class);
+        startService(intent);
     }
 
 
